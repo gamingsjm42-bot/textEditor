@@ -26,31 +26,26 @@ const char* getFile(QString name){return (defaultPath + name.toStdString()).c_st
 
 void Widget::on_load_clicked()
 {
-    
-    const int maxSizeFile = 999999999;
-    //set f variabel
-    FILE * f = NULL;
-    //set file var
-    char * fileVar =(char*)malloc(maxSizeFile*sizeof(char)) ; 
-    //set load
-    f=  fopen( ui->fileName->text().toStdString().c_str(),"r");
-    //set error 
-    if(f ==NULL) QMessageBox::critical(this,"Error","no sush file");
-    //set fileVar
-    //set text editor
-    //ui->text->setText(fileVar);
-    //fix memorey
-    free(fileVar);
+    //set filenamee vars
+    QString fileName = ui->fileName->text();
+    QFile file(fileName);
+    //fix if not file is open
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))  QMessageBox::critical(this, "Error", "Cannot open or find the specified file.");
+    //sread filee
+    QTextStream in(&file);
+    ui->text->setText(in.readAll());
+    file.close();
 }
 
 void Widget::on_save_clicked()
 {
-    //set file variable
-    FILE * f =  NULL;
-    //open file
-    f = fopen(ui->fileName->text().toStdString().c_str(),"w+");
-    //set file print
-    fprintf(f,ui->fText->text().toStdString().c_str());
-    //close file 
-    fclose(f);
+    //set filenamee vars
+    QString fileName = ui->fileName->text();
+    QFile file(fileName);
+    //fix if not file is open
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))  QMessageBox::critical(this, "Error", "Cannot open or find the specified file.");
+    //sread filee
+    QTextStream out(&file);
+    out << textToWrite
+    file.close();
 }
