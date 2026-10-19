@@ -11,6 +11,3 @@
 <h4>cd build</h4>
 <h4>cmake ..</h4>
 <h4>make</h4>
-<h4>./economy</h4>
-<h1>4.Features:</h1>
-<h3>that only calcule expenses or loss on business</h3>
