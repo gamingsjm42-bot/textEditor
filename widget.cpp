@@ -3,6 +3,7 @@
 #include "ui_widget.h"
 #include <stdlib.h>
 #include <iostream>
+#include <QFile>
 #include <string>
 #include <QMessageBox>
 //set comstractor class
